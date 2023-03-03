@@ -1,47 +1,71 @@
-let a = 5
-let b = 3
-function add(a,b) {
-    result = a + b;
-    console.log(result)
-    return result
-}
-add(a,b)
+let firstOperand = 5
+let secondOperand = 3
 
-function extract(a,b) {
-    result = a - b;
+const operateArray = ["+", "-", "x", "/", "%", "√x", "+/-"];
+function add(firstOperand,secondOperand) {
+    result = firstOperand + secondOperand ;
     console.log(result)
     return result
 }
-extract(a,b)
 
-function multiply(a,b) {
-    result = a*b;
+
+function extract(firstOperand,secondOperand) {
+    result = firstOperand - secondOperand ;
     console.log(result)
     return result
 }
-multiply(a,b)
-function divide(a,b) {
-    result = a/b;
+
+
+function multiply(firstOperand,secondOperand) {
+    result = firstOperand * secondOperand ;
     console.log(result)
     return result
 }
-divide(a,b)
-function negative(a){
-    result = a*(-1);
+
+function divide(firstOperand,secondOperand) {
+    result = firstOperand / secondOperand ;
+    console.log(result)
+    return result
+}
+
+function negative(firstOperand){
+    result = firstOperand * (-1);
     console.log(result)
     return result
  }
- negative(a)
- function remainder(a,b) {
-    result = a%b;
-    console.log(result)
-    return result
-}
-remainder(a,b)
 
-function squareRoot(a) {
-    result = Math.sqrt(a)
+ function remainder(firstOperand,secondOperand) {
+    result = firstOperand % secondOperand 
     console.log(result)
     return result
 }
-squareRoot(a)
+
+
+function squareRoot(firstOperand) {
+    result = Math.sqrt(firstOperand)
+    console.log(result)
+    return result
+}
+
+function operate(firstOperand, secondOperand, operand){
+    if (operand === "+"){
+        add(firstOperand,secondOperand);
+    } else if (operand === "-"){
+        extract(firstOperand,secondOperand);
+    } else if (operand === "x"){
+        multiply(firstOperand,secondOperand);
+    } else if (operand === "/"){
+        divide(firstOperand,secondOperand);
+    } else if (operand === "%"){
+        remainder(firstOperand,secondOperand);
+    } else if (operand === "√x"){
+        squareRoot(firstOperand);
+    } else if (operand === "+/-"){
+        negative(firstOperand);
+    }
+    
+}
+
+operateArray.forEach(function(operand){
+    operate(firstOperand, secondOperand, operand)
+});
