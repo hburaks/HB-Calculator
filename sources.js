@@ -68,6 +68,9 @@ function updateOperator() {
         display.value = display.value*(-1)
     } else if (operatorValue === '√x'){
         display.value = squareRoot(display.value)
+    } else if (operatorValue === '♥'){
+        display.value = ""
+        display.value += operatorValue 
     } else {
     firstOperand = display.value
     display.value = ""
@@ -80,6 +83,9 @@ operators.forEach(function(operator){
     operator.addEventListener("click",updateOperator);
     
 })
+
+
+
 function updateSecondOperand(){
     const toSliced = display.value
     if (operator === null || firstOperand === null) {
@@ -91,7 +97,6 @@ function updateSecondOperand(){
     display.value = result;
     firstOperand = result;
     operator = null;
-
 }
 
 const equals = document.querySelector("#equal");
