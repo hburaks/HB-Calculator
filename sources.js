@@ -1,93 +1,96 @@
+let firstOperand = null;
+let secondOperand = null;
+let operator = null;
+let result = null;
 
-let firstOperand = 5
-let secondOperand = 3
-
-const operateArray = ["+", "-", "x", "/", "%", "√x", "+/-"];
 function add(firstOperand,secondOperand) {
-    result = firstOperand + secondOperand ;
-    console.log(result)
-    return result
+    return firstOperand + secondOperand ;
 }
 
 
 function extract(firstOperand,secondOperand) {
-    result = firstOperand - secondOperand ;
-    console.log(result)
-    return result
+    return firstOperand - secondOperand ;
 }
 
 
 function multiply(firstOperand,secondOperand) {
-    result = firstOperand * secondOperand ;
-    console.log(result)
-    return result
+    return firstOperand * secondOperand ;
 }
 
 function divide(firstOperand,secondOperand) {
-    result = firstOperand / secondOperand ;
-    console.log(result)
-    return result
+    return firstOperand / secondOperand ;
 }
 
-function negative(firstOperand){
-    result = firstOperand * (-1);
-    console.log(result)
-    return result
- }
-
- function remainder(firstOperand,secondOperand) {
-    result = firstOperand % secondOperand 
-    console.log(result)
-    return result
+function remainder(firstOperand,secondOperand) {
+    return firstOperand % secondOperand 
 }
 
 
 function squareRoot(firstOperand) {
-    result = Math.sqrt(firstOperand)
-    console.log(result)
-    return result
+    return Math.sqrt(firstOperand)
 }
 
-function operate(firstOperand, secondOperand, operand){
-    if (operand === "+"){
-        add(firstOperand,secondOperand);
-    } else if (operand === "-"){
-        extract(firstOperand,secondOperand);
-    } else if (operand === "x"){
-        multiply(firstOperand,secondOperand);
-    } else if (operand === "/"){
-        divide(firstOperand,secondOperand);
-    } else if (operand === "%"){
-        remainder(firstOperand,secondOperand);
-    } else if (operand === "√x"){
-        squareRoot(firstOperand);
-    } else if (operand === "+/-"){
-        negative(firstOperand);
-    }
-    
+function operate(firstOperand, secondOperand, operator){
+    if (operator === "+"){
+        return add(firstOperand,secondOperand);
+    } else if (operator === "-"){
+        return extract(firstOperand,secondOperand);
+    } else if (operator === "x"){
+        return multiply(firstOperand,secondOperand);
+    } else if (operator === "/"){
+        return divide(firstOperand,secondOperand);
+    } else if (operator === "%"){
+        return remainder(firstOperand,secondOperand);
+    } else if (operator === "√x"){
+        return squareRoot(firstOperand);
+    } else {
+        return "Error: invalid operator";
+    }    
 }
-/*
-//To control every operanda
-operateArray.forEach(function(operand){
-    operate(firstOperand, secondOperand, operand)
-});
-*/
 
 
-const inputValue = document.querySelector("#inputValue")
 
-const operands = document.querySelectorAll("#operand");
-operands.forEach(function(operand){
-    operand.addEventListener("click",updateInput);
-    function updateInput() {
-        let operandValue = this.value;
-        inputValue.value += operandValue
-    }
+const display = document.querySelector("#display")
+
+function updateOperand() {
+    let operandValue = this.value;
+    display.value += operandValue
+}
+const operand = document.querySelectorAll("#operand")
+operand.forEach(button => {
+    button.addEventListener("click",updateOperand); 
 })
 
-/*const buttonValue = target.innerText;
-            if (buttonValue === 'AC'){
-                inputValue.value = ""
-            } else if (/\d+/.test(buttonValue)){
-                inputValue.value += buttonValue
-            }*/
+function updateOperator() {
+    let operatorValue = this.value;
+    if (operatorValue === 'AC'){
+        display.value = ""
+    }  else if (operatorValue === '.'){
+        display.value += operatorValue
+    } else {
+    firstOperand = display.value
+    display.value = ""
+    display.value += operatorValue
+    operator = display.value    
+    } 
+}
+const operators = document.querySelectorAll("#operator");
+operators.forEach(function(operator){
+    operator.addEventListener("click",updateOperator);
+    
+})
+function updateSecondOperand(){
+    const toSliced = display.value
+    if (operator === null || firstOperand === null) {
+        display.value = "";
+        return;
+    }
+    secondOperand = parseFloat(toSliced.slice(1));
+    result = operate(parseFloat(firstOperand), parseFloat(secondOperand), operator);
+    display.value = result;
+    firstOperand = result;
+    operator = null;
+
+}
+const equals = document.querySelector("#equal");
+equals.addEventListener("click", updateSecondOperand);
