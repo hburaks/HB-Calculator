@@ -41,13 +41,10 @@ function operate(firstOperand, secondOperand, operator){
         return divide(firstOperand,secondOperand);
     } else if (operator === "%"){
         return remainder(firstOperand,secondOperand);
-    } else if (operator === "√x"){
-        return squareRoot(firstOperand);
     } else {
         return "Error: invalid operator";
     }    
 }
-
 
 
 const display = document.querySelector("#display")
@@ -67,6 +64,10 @@ function updateOperator() {
         display.value = ""
     }  else if (operatorValue === '.'){
         display.value += operatorValue
+    } else if (operatorValue === '+/-'){
+        display.value = display.value*(-1)
+    } else if (operatorValue === '√x'){
+        display.value = squareRoot(display.value)
     } else {
     firstOperand = display.value
     display.value = ""
@@ -92,5 +93,6 @@ function updateSecondOperand(){
     operator = null;
 
 }
+
 const equals = document.querySelector("#equal");
 equals.addEventListener("click", updateSecondOperand);
