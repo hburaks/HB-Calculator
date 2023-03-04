@@ -1,3 +1,4 @@
+
 let firstOperand = 5
 let secondOperand = 3
 
@@ -65,7 +66,28 @@ function operate(firstOperand, secondOperand, operand){
     }
     
 }
-
+/*
+//To control every operanda
 operateArray.forEach(function(operand){
     operate(firstOperand, secondOperand, operand)
 });
+*/
+
+
+const inputValue = document.querySelector("#inputValue")
+
+const operands = document.querySelectorAll("#operand");
+operands.forEach(function(operand){
+    operand.addEventListener("click",updateInput);
+    function updateInput() {
+        let operandValue = this.value;
+        inputValue.value += operandValue
+    }
+})
+
+/*const buttonValue = target.innerText;
+            if (buttonValue === 'AC'){
+                inputValue.value = ""
+            } else if (/\d+/.test(buttonValue)){
+                inputValue.value += buttonValue
+            }*/
