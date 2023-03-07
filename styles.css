@@ -12,14 +12,25 @@
     width: 100%;
     text-align: center;
     padding: 20px;
+    background-color: rgb(50,40,38);
+    color: white;
 }
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
+    text-align: center;
+}
+button {
+    padding: 10px;
+    margin: 3px;
+    
 }
 
 :root {
-    background-color: rgb(240, 240, 240) ;
+    background-color: rgb(170,161,139) ;
+}
+a:visited {
+    color: inherit;
+    
+}
+a {
+    text-decoration: none;
 }
